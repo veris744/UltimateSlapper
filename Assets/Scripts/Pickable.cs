@@ -10,11 +10,11 @@ public abstract class Pickable : MonoBehaviour
 
     protected MeshRenderer meshRenderer;
     protected SphereCollider objectCollider;
+    protected GameManager gameManager;
 
     public abstract void OnTriggerWithPlayer(PlayerController player);
     
     public abstract void ResetPlayer(PlayerController player);
-
     
 
 
@@ -23,6 +23,7 @@ public abstract class Pickable : MonoBehaviour
     {
         meshRenderer = GetComponent<MeshRenderer>();
         objectCollider = GetComponent<SphereCollider>();
+        gameManager = GameManager.Instance;
     }
 
 
@@ -36,6 +37,9 @@ public abstract class Pickable : MonoBehaviour
         }
 
         ResetPlayer(player);
+
+        Vector2 pickable2DLocation = new Vector2(transform.position.x, transform.position.z);
+        gameManager.ListOfOccupiedSpawners.Remove(pickable2DLocation);
 
         if (timeToRegenerate >= 0)
         {
@@ -52,11 +56,28 @@ public abstract class Pickable : MonoBehaviour
             currCountdownValue--;
         }
 
-        //set new location
+        RelocatePickable();
 
         meshRenderer.enabled = true;
         objectCollider.enabled = true;
 
+    }
+
+    public void RelocatePickable()
+    {
+        int size = gameManager.ListOfAllSpawners.Count;
+        int arrayPos = Random.Range(0, size);
+
+        if (gameManager.ListOfOccupiedSpawners.Contains(gameManager.ListOfAllSpawners[arrayPos]))
+        {
+            RelocatePickable();
+        }
+        else
+        {
+            Vector3 spawnerPos = new Vector3(gameManager.ListOfAllSpawners[arrayPos].x, 1, gameManager.ListOfAllSpawners[arrayPos].y);
+            this.transform.position = spawnerPos;
+            gameManager.ListOfOccupiedSpawners.Add(gameManager.ListOfAllSpawners[arrayPos]);
+        }
     }
 }
 
