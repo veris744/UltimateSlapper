@@ -18,11 +18,6 @@ public class CameraController : MonoBehaviour
     public float mouseSensitivity = 1f;
     public float distanceFromPlayer = 3f;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
