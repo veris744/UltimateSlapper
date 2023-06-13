@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("CHARACTER")]
     private CharacterController playerController;
     private bool isGrounded;
     private Vector3 playerVelocity;
+
+    [Header("CHARACTER")]
     public float playerSpeed = 5f;
     [SerializeField] private float jumpHeight = 3f;
 
