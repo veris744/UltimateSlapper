@@ -18,7 +18,6 @@ public class SpeedPickable : Pickable
 
 
         StartCoroutine(CountdownToReset(player));
-
     }
 
 
