@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 989141947}
-  camOffset: {x: 1, y: 0.7, z: 0}
+  camOffset: {x: 0, y: 0.7, z: 0}
   moveSpeed: 0.1
   mouseSensitivity: 5
   distanceFromPlayer: 3

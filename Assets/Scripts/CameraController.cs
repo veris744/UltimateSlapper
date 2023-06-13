@@ -33,6 +33,6 @@ public class CameraController : MonoBehaviour
         currentRotation = Vector3.SmoothDamp(currentRotation, nextRotation, ref smoothVel, moveSpeed);
         transform.localEulerAngles = currentRotation;
 
-        transform.position = (playerTransform.position - transform.forward * distanceFromPlayer) + camOffset;
+        transform.position = ((playerTransform.position + camOffset) - transform.forward * distanceFromPlayer);
     }
 }
