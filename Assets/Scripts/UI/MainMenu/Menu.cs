@@ -30,6 +30,13 @@ public class Menu : MonoBehaviour
         PanelOptions.SetActive(true);
     }
 
+    public void OptionsBackButton() 
+    {
+        PanelMain.SetActive(true);
+        PanelOptions.SetActive(false);
+    }
+  
+
     public void ButtonQuitGame()
     {
         Application.Quit();
