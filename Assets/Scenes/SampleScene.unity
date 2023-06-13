@@ -314,9 +314,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5befb9f7baf8a7f418f0983c170c0ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 989141943}
-  damping: 1
-  rotateSpeed: 5
+  playerTransform: {fileID: 989141947}
+  camOffset: {x: 1, y: 0.7, z: 0}
+  moveSpeed: 0.1
+  mouseSensitivity: 5
+  distanceFromPlayer: 3
 --- !u!1 &989141943
 GameObject:
   m_ObjectHideFlags: 0

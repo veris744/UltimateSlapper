@@ -4,32 +4,40 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public GameObject player;
-    public float damping = 1f;
-    public float rotateSpeed = 5f;
-    private Vector3 offset;
+    [SerializeField]
+    private Transform playerTransform;
+
+    [SerializeField]
+    private Vector3 camOffset = Vector3.zero;
+
+    private float rotationY, rotationX;
+    private Vector3 currentRotation;
+    private Vector3 smoothVel = Vector3.zero;
+
+    public float moveSpeed = 0.2f;
+    public float mouseSensitivity = 1f;
+    public float distanceFromPlayer = 3f;
 
     void Start()
     {
-        offset = player.transform.position - transform.position;
+
     }
 
-    void LateUpdate()
+    void Update()
     {
-        float currentAngle = transform.eulerAngles.y;
-        float desiredAngle = player.transform.eulerAngles.y;
-        float angle = Mathf.LerpAngle(currentAngle, desiredAngle, Time.deltaTime * damping);
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        float mouseY = (-Input.GetAxis("Mouse Y")) * mouseSensitivity;
 
-        Quaternion rotation = Quaternion.Euler(0, angle, 0);
-        transform.position = player.transform.position - (rotation * offset);
+        rotationY += mouseX;
+        rotationX += mouseY;
 
-        transform.LookAt(player.transform);
-        //Control mouse
+        rotationX = Mathf.Clamp(rotationX, -40, 40);
 
-        //float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
-        //player.transform.Rotate(0, horizontal, 0);
-        //Quaternion rotationNew = Quaternion.Euler(0, desiredAngle, 0);
-        //transform.position = player.transform.position - (rotation * offset);
+        Vector3 nextRotation = new Vector3(rotationX, rotationY, 0f);
 
+        currentRotation = Vector3.SmoothDamp(currentRotation, nextRotation, ref smoothVel, moveSpeed);
+        transform.localEulerAngles = currentRotation;
+
+        transform.position = (playerTransform.position - transform.forward * distanceFromPlayer) + camOffset;
     }
 }
