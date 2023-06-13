@@ -39,12 +39,12 @@ public class GameManager : MonoBehaviour
         if(timer <= 0) 
         {
             looseByTime = true;
-            DieByTime();
+            //DieByTime();
         }
 
         if(points >= internalWinningPoints) 
         {
-            WinByPoints();
+            //WinByPoints();
         }
 
     }
@@ -56,12 +56,12 @@ public class GameManager : MonoBehaviour
     }
     void DieByLife() 
     {
-        SceneManager.LoadScene("LooseScene");
+        SceneManager.LoadScene("LoseScene");
 
     }
     void DieByTime() 
     {
-        SceneManager.LoadScene("LooseScene");
+        SceneManager.LoadScene("LoseScene");
     }
     void WinByPoints() 
     {
