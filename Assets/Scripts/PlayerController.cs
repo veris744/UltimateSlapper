@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private Vector3 playerVelocity;
     public float playerSpeed = 5f;
+    public float playerForce = 5f;
     [SerializeField] private float jumpHeight = 3f;
 
     [Header("OTHERS")]
@@ -50,5 +51,22 @@ public class PlayerController : MonoBehaviour
         playerVelocity.y += Physics.gravity.y * Time.fixedDeltaTime;
         playerController.Move(playerVelocity * Time.fixedDeltaTime);
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Pickable pickable = other.GetComponent<Pickable>();
+        if (pickable != null)
+        {
+            pickable.OnTriggerWithPlayer(this);
+            return;
+        }
+
+        Event eventObject = other.GetComponent<Event>();
+        if (eventObject != null)
+        {
+            eventObject.OnTriggerWithPlayer(this);
+            return;
+        }
     }
 }
