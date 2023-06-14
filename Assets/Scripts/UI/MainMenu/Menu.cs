@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class Menu : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject PanelMain;
     public GameObject PanelOptions;
+
+
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -19,6 +21,7 @@ public class Menu : MonoBehaviour
         
     }
 
+   
     public void ButtonStartGame()
     {
         SceneManager.LoadScene("SampleScene");
@@ -42,5 +45,8 @@ public class Menu : MonoBehaviour
         Application.Quit();
         Debug.Log("Salí");
     }
+
+
+
 
 }
