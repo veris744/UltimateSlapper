@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [Header("CHARACTER")]
     public float playerSpeed = 5f;
     public float playerForce = 5f;
+    public float HP = 0;
     [SerializeField] private float jumpHeight = 3f;
 
     [Header("OTHERS")]

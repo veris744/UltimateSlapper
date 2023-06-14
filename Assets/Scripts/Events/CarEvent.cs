@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class CarEvent : Event
 {
+    public Car car;
+
     public override void OnTriggerWithPlayer(PlayerController player)
     {
-        Debug.Log("Event car");
-        this.gameObject.SetActive(false);
+        car.Run();
+        gameObject.SetActive(false);
     }
+
+
 }
