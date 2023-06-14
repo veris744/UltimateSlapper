@@ -12,14 +12,19 @@ public class OptionsMenu : MonoBehaviour
 {
     public TMP_Dropdown resolutionDropDown;
     Resolution[] resolutions;
-    public AudioListener Lisener;
+    public TMP_Dropdown QualityDropDown;
+    public int Quality;
     public Slider sliderVolume;
     public float sliderVolumeValue;
     // Start is called before the first frame update
     void Start()
     {
+        Quality = PlayerPrefs.GetInt("QualityNumber", 3);
+        QualityDropDown.value = Quality;
+
         CheckResolution();
-        
+        CheckQuality();
+
         sliderVolume.value = PlayerPrefs.GetFloat("VolumeAudio", 0.5f);
         AudioListener.volume = sliderVolume.value;
     }
@@ -28,6 +33,13 @@ public class OptionsMenu : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void CheckQuality() 
+    {
+        QualitySettings.SetQualityLevel(QualityDropDown.value);
+        PlayerPrefs.SetInt("QualityNumber", QualityDropDown.value);
+        Quality = QualityDropDown.value;
     }
 
     public void CheckResolution()
