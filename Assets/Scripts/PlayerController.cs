@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     public float playerSpeed = 5f;
     public float playerForce = 5f;
+    public float HP = 0;
     [SerializeField] private float jumpHeight = 3f;
 
     [Header("OTHERS")]

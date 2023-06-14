@@ -48,7 +48,7 @@ public class StatePatrol : StateMachineBehaviour
         }
 
         RaycastHit hit;
-        if (Physics.Raycast(animator.transform.position, animator.transform.TransformDirection(Vector3.forward), out hit, 5))
+        if (Physics.Raycast(animator.transform.position, animator.transform.TransformDirection(Vector3.forward), out hit, 10))
         {
             if (hit.transform.tag == "Player")                                                                                                    //Si el ray encuentra el gameobject con el tag Player pasa al estado detección
             {
@@ -61,7 +61,7 @@ public class StatePatrol : StateMachineBehaviour
         }
         else
         {
-            Debug.DrawRay(animator.transform.position, animator.transform.TransformDirection(Vector3.forward) * 5, Color.white);                  //Si no encuentra nada permanece en blanco
+            Debug.DrawRay(animator.transform.position, animator.transform.TransformDirection(Vector3.forward) * 10, Color.white);                  //Si no encuentra nada permanece en blanco
         }
     }
 }
