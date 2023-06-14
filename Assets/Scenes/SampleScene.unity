@@ -511,7 +511,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2.2
+  m_Height: 0.95
   m_Radius: 0.56
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -531,6 +531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
+  playerForce: 5
   jumpHeight: 3
   cam: {fileID: 963194227}
 --- !u!114 &989141950
