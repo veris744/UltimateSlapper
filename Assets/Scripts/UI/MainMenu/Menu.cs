@@ -24,7 +24,7 @@ public class Menu : MonoBehaviour
    
     public void ButtonStartGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("City");
     }
 
     public void ButtonOptions() 
