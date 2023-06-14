@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public delegate void OnScoreChanges(int points);
+    public event OnScoreChanges OnChangePoints;
 
     public float timer;
     private int points;
@@ -21,8 +23,6 @@ public class GameManager : MonoBehaviour
     public SpeedPickable speedPickable;
     public ForcePickable forcePickable;
 
-    public delegate void OnPoints();
-    public event OnPoints OnPointsGet;
     public static GameManager Instance
     {
         get;
@@ -79,10 +79,10 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void AddPoints(int _Points) 
+   public void AddPoints(int _Points) 
     {
         points += _Points;
-        OnPointsGet();
+        OnChangePoints(points);
     }
     void DieByLife() 
     {
