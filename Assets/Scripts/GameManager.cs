@@ -4,12 +4,22 @@ using System.Drawing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public static class ConstParamenters
+{
+    public const float COMBO_TIMER_DEFAULT = 5f;
+}
+
 public class GameManager : MonoBehaviour
 {
+
     public delegate void OnScoreChanges(int points);
     public event OnScoreChanges OnChangePoints;
 
+    
     public float timer;
+    [HideInInspector] public float comboTimer = 0;
+    [HideInInspector] public int slapCount = 0;
+    [HideInInspector] public bool isCombo = false;
     private int points;
     private int internalWinningPoints;
     private bool looseByLife;//hay que poner un delegado de player a esto, que setee la perdida por vida
@@ -77,6 +87,16 @@ public class GameManager : MonoBehaviour
             //WinByPoints();
         }
 
+        if (comboTimer > 0)
+        {
+            Debug.Log("Hay combo!");
+            comboTimer -= Time.deltaTime;
+        }
+        else if (comboTimer < 0 && isCombo)
+        {
+            Debug.Log("No hay combo!");
+            isCombo = false;
+        }
     }
 
    public void AddPoints(int _Points) 
