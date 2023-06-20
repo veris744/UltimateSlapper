@@ -8,9 +8,14 @@ public class GameManager : MonoBehaviour
 {
     public delegate void OnScoreChanges(int points);
     public event OnScoreChanges OnChangePoints;
+    public delegate void OnBoost(int points);
+    public event OnBoost OnBoosted;
+    public event OnBoost FinishBoosted;
 
     public float timer;
     private int points;
+    private int boostType;
+    private float secondsOfBoost;
     private int internalWinningPoints;
     private bool looseByLife;//hay que poner un delegado de player a esto, que setee la perdida por vida
     private bool looseByTime;
@@ -78,7 +83,20 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
+    public void PlayerBoosted(int _BoostType,float _Seconds)
+    {
+        boostType = _BoostType;
+        secondsOfBoost = _Seconds;
+        OnBoosted(boostType);
+        StartCoroutine(BoostCoroutine());
+    }
+    IEnumerator BoostCoroutine() 
+    {
+        yield return new WaitForSeconds(secondsOfBoost);
+        boostType = 0;
+        secondsOfBoost = 0;
+        FinishBoosted(boostType);
+    }
    public void AddPoints(int _Points) 
     {
         points += _Points;
