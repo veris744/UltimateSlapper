@@ -45,7 +45,7 @@ public class Ragdoll : MonoBehaviour
             coll.enabled = _enableRagdoll;
         }
 
-        GetComponent<Rigidbody>().useGravity = !_enableRagdoll;
+        //GetComponent<Rigidbody>().useGravity = !_enableRagdoll;
         //GetComponent<Rigidbody>().isKinematic = _enableRagdoll;
     }
 }

@@ -53,21 +53,21 @@ public class GameManager : MonoBehaviour
 
 
         //Pickable Spawners////////////////////////////////////////////////////////////////
-        ListOfAllSpawners = new List<Vector2>();
-        ListOfAllSpawners.Add(new Vector2(13, 0));
-        ListOfAllSpawners.Add(new Vector2(0, 0));
-        ListOfAllSpawners.Add(new Vector2(13, 8));
-        ListOfAllSpawners.Add(new Vector2(0, 8));
+        //ListOfAllSpawners = new List<Vector2>();
+        //ListOfAllSpawners.Add(new Vector2(13, 0));
+        //ListOfAllSpawners.Add(new Vector2(0, 0));
+        //ListOfAllSpawners.Add(new Vector2(13, 8));
+        //ListOfAllSpawners.Add(new Vector2(0, 8));
 
-        ListOfOccupiedSpawners = new List<Vector2>();
+        //ListOfOccupiedSpawners = new List<Vector2>();
 
-        if (numSpeedPickables + numForcePickables > ListOfAllSpawners.Count)
-        {
-            numSpeedPickables = 0;
-            numForcePickables = 0;
-        }
+        //if (numSpeedPickables + numForcePickables > ListOfAllSpawners.Count)
+        //{
+        //    numSpeedPickables = 0;
+        //    numForcePickables = 0;
+        //}
 
-        SpawnPickables();
+        //SpawnPickables();
         /////////////////////////////////////////////////////////////////////////////////////
 
     }
