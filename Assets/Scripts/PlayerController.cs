@@ -12,10 +12,16 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed = 5f;
     public float playerForce = 5f;
     public float HP = 0;
+    public float scoreMultiplier = 1;
     [SerializeField] private float jumpHeight = 3f;
 
     [Header("OTHERS")]
     [SerializeField] private Camera cam;
+
+    public bool speedBoosted = false;
+    public bool forceBoosted = false;
+    public bool scoreBoosted = false;
+
     private void Awake()
     {
         playerController = GetComponent<CharacterController>();
