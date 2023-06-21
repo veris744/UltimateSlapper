@@ -10,6 +10,8 @@ public class StatePatrol : StateMachineBehaviour
     private int destPoint = 0;
     private bool NoInicializado = true;
 
+    Vector3 AddVec;
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (NoInicializado)
@@ -62,6 +64,40 @@ public class StatePatrol : StateMachineBehaviour
         else
         {
             Debug.DrawRay(animator.transform.position, animator.transform.TransformDirection(Vector3.forward) * 10, Color.white);                  //Si no encuentra nada permanece en blanco
+        }
+
+        AddVec = new Vector3(1, 0, 1);
+        if (Physics.Raycast(animator.transform.position, animator.transform.TransformDirection(Vector3.right + AddVec), out hit, 5))
+        {
+            if (hit.transform.tag == "Player")                                                                                                    //Si el ray encuentra el gameobject con el tag Player pasa al estado detección
+            {
+                animator.GetBehaviour<GoToPlayer>().playerPositionOnHit = hit.point;                                                              //se pasa la posición actual del Player al script GoToPlayer
+                animator.SetBool("Player", true);                                                                                                 //se pone la condición para que el agente cambie al estado de detección
+                Debug.Log("Hit player");
+            }
+            Debug.DrawRay(animator.transform.position, animator.transform.TransformDirection(Vector3.right + AddVec) * hit.distance, Color.yellow);      //si el ray se choca con algo cambia a color amarillo
+
+        }
+        else
+        {
+            Debug.DrawRay(animator.transform.position, animator.transform.TransformDirection(Vector3.right + AddVec) * 5, Color.white);                  //Si no encuentra nada permanece en blanco
+        }
+
+        AddVec = new Vector3(-1, 0, 1);
+        if (Physics.Raycast(animator.transform.position, animator.transform.TransformDirection(Vector3.left + AddVec), out hit, 5))
+        {
+            if (hit.transform.tag == "Player")                                                                                                    //Si el ray encuentra el gameobject con el tag Player pasa al estado detección
+            {
+                animator.GetBehaviour<GoToPlayer>().playerPositionOnHit = hit.point;                                                              //se pasa la posición actual del Player al script GoToPlayer
+                animator.SetBool("Player", true);                                                                                                 //se pone la condición para que el agente cambie al estado de detección
+                Debug.Log("Hit player");
+            }
+            Debug.DrawRay(animator.transform.position, animator.transform.TransformDirection(Vector3.left + AddVec) * hit.distance, Color.yellow);      //si el ray se choca con algo cambia a color amarillo
+
+        }
+        else
+        {
+            Debug.DrawRay(animator.transform.position, animator.transform.TransformDirection(Vector3.left + AddVec) * 5, Color.white);                  //Si no encuentra nada permanece en blanco
         }
     }
 }
