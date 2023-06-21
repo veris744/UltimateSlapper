@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour
 {
     public delegate void OnScoreChanges(int points);
     public event OnScoreChanges OnChangePoints;
-    public delegate void OnBoost(int points);
+    public delegate void OnLifeChanges(int life);
+    public event OnLifeChanges OnChangeLife;
+    public delegate void OnBoost(int BoostType);
     public event OnBoost OnBoosted;
     public event OnBoost FinishBoosted;
 
@@ -22,11 +24,13 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int slapCount = 0;
     [HideInInspector] public bool isCombo = false;
     private int points;
+    private int life;
     private int boostType;
     private float secondsOfBoost;
     private int internalWinningPoints;
     private bool looseByLife;//hay que poner un delegado de player a esto, que setee la perdida por vida
     private bool looseByTime;
+    private bool itsPlayableLevel = false;
     private int numSpeedPickables = 1;
     private int numForcePickables = 1;
     private int numScorePickables = 2;
@@ -75,20 +79,25 @@ public class GameManager : MonoBehaviour
             {
                 SpawnPickables();
             }
+            itsPlayableLevel = true;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
-        if(timer <= 0) 
+        if (itsPlayableLevel)
         {
-            looseByTime = true;
-            //DieByTime();
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                looseByTime = true;
+                //DieByTime();
+            }
         }
 
-        if(points >= internalWinningPoints) 
+
+        if (points >= internalWinningPoints)
         {
             //WinByPoints();
         }
@@ -104,7 +113,7 @@ public class GameManager : MonoBehaviour
             isCombo = false;
         }
     }
-    public void PlayerBoosted(int _BoostType,float _Seconds)
+    public void PlayerBoosted(int _BoostType, float _Seconds)
     {
         //speed boost is 1
         //force boost is 2
@@ -112,31 +121,36 @@ public class GameManager : MonoBehaviour
 
         boostType = _BoostType;
         secondsOfBoost = _Seconds;
-        //OnBoosted(boostType);
-        //StartCoroutine(BoostCoroutine());
+        OnBoosted(boostType);
+        StartCoroutine(BoostCoroutine());
     }
-    IEnumerator BoostCoroutine() 
+    IEnumerator BoostCoroutine()
     {
         yield return new WaitForSeconds(secondsOfBoost);
         boostType = 0;
         secondsOfBoost = 0;
         FinishBoosted(boostType);
     }
-   public void AddPoints(int _Points) 
+    public void AddPoints(int _Points)
     {
         points += _Points;
         OnChangePoints(points);
     }
-    void DieByLife() 
+    public void AddLifes(int _Life)
+    {
+        life += _Life;
+        OnChangeLife(life);
+    }
+    void DieByLife()
     {
         SceneManager.LoadScene("LoseScene");
 
     }
-    void DieByTime() 
+    void DieByTime()
     {
         SceneManager.LoadScene("LoseScene");
     }
-    void WinByPoints() 
+    void WinByPoints()
     {
         SceneManager.LoadScene("WinScene");
     }
@@ -147,7 +161,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnPickables()
     {
-        for (int i = 0; i<numSpeedPickables; i++)
+        for (int i = 0; i < numSpeedPickables; i++)
         {
             SpawnSpeedPickable();
         }
