@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public float timer;
     [HideInInspector] public float comboTimer = 0;
     [HideInInspector] public int slapCount = 0;
+    [HideInInspector] public int slapPointsCount = 0;
     [HideInInspector] public bool isCombo = false;
     private int points;
     private int life;
@@ -111,6 +112,17 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("No hay combo!");
             isCombo = false;
+            if (slapCount == 0)
+            {
+                AddPoints(slapPointsCount);
+                slapPointsCount = 0;
+            }
+            else
+            {
+                AddPoints(slapPointsCount * slapCount);
+                slapPointsCount = 0;
+                slapCount = 0;
+            }
         }
     }
     public void PlayerBoosted(int _BoostType, float _Seconds)
@@ -134,7 +146,7 @@ public class GameManager : MonoBehaviour
     public void AddPoints(int _Points)
     {
         points += _Points;
-        OnChangePoints(points);
+        //OnChangePoints(points);
     }
     public void AddLifes(int _Life)
     {
