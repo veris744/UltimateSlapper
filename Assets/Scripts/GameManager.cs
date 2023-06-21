@@ -103,6 +103,10 @@ public class GameManager : MonoBehaviour
     }
     public void PlayerBoosted(int _BoostType,float _Seconds)
     {
+        //speed boost is 1
+        //force boost is 2
+        //score boost is 3
+
         boostType = _BoostType;
         secondsOfBoost = _Seconds;
         OnBoosted(boostType);

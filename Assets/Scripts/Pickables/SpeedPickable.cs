@@ -7,10 +7,16 @@ public class SpeedPickable : Pickable
     public float speedMultiplier = 2;
     private float earlierSpeed;
 
+    private void Awake()
+    {
+        boostType = 1;
+    }
 
     public override void OnTriggerWithPlayer(PlayerController player)
     {
         if (player.speedBoosted) return;
+
+        GameManager.Instance.PlayerBoosted(boostType, pickableTime);
 
         earlierSpeed = player.playerSpeed;
         player.playerSpeed *= speedMultiplier;
