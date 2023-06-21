@@ -146,7 +146,7 @@ public class GameManager : MonoBehaviour
     public void AddPoints(int _Points)
     {
         points += _Points;
-        //OnChangePoints(points);
+        OnChangePoints(points);
     }
     public void AddLifes(int _Life)
     {
