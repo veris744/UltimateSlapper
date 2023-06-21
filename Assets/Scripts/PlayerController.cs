@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float playerForce = 1000f;
     public float HP = 0;
     public float scoreMultiplier = 1;
+    [HideInInspector] public Animator animator;
     [SerializeField] private float jumpHeight = 3f;
 
     [Header("OTHERS")]
@@ -25,12 +26,13 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerController = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
     }
-
 
     private void Update()
     {
-        
+        Debug.Log(playerController.velocity.magnitude);
+        animator.SetFloat("Speed", Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 ? 1f : 0f);
     }
 
     private void FixedUpdate()
@@ -55,6 +57,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             playerVelocity.y += Mathf.Sqrt(-jumpHeight * Physics.gravity.y);
+            animator.SetTrigger("Jump");
         }
         playerVelocity.y += Physics.gravity.y * Time.fixedDeltaTime;
         playerController.Move(playerVelocity * Time.fixedDeltaTime);
