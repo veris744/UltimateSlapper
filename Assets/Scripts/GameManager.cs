@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
         Instance = this;
+        DontDestroyOnLoad(this);
     }
 
     // Start is called before the first frame update
@@ -55,24 +56,26 @@ public class GameManager : MonoBehaviour
         points = 0;
         looseByLife = false;
         looseByTime = false;
+    }
 
-
-        //Pickable Spawners////////////////////////////////////////////////////////////////
-        ListOfAllSpawners = new List<Vector2>();
-        ListOfAllSpawners.Add(new Vector2(13, 0));
-        ListOfAllSpawners.Add(new Vector2(0, 0));
-        ListOfAllSpawners.Add(new Vector2(13, 8));
-        ListOfAllSpawners.Add(new Vector2(0, 8));
-
-        ListOfOccupiedSpawners = new List<Vector2>();
-
-        if (numSpeedPickables + numForcePickables + numScorePickables <= ListOfAllSpawners.Count)
+    private void OnLevelWasLoaded(int level)
+    {
+        if (level == 1)
         {
-            SpawnPickables();
+            ListOfAllSpawners = new List<Vector2>();
+            ListOfOccupiedSpawners = new List<Vector2>();
+
+
+            ListOfAllSpawners.Add(new Vector2(13, 0));
+            ListOfAllSpawners.Add(new Vector2(0, 0));
+            ListOfAllSpawners.Add(new Vector2(13, 8));
+            ListOfAllSpawners.Add(new Vector2(0, 8));
+
+            if (numSpeedPickables + numForcePickables + numScorePickables <= ListOfAllSpawners.Count)
+            {
+                SpawnPickables();
+            }
         }
-
-        /////////////////////////////////////////////////////////////////////////////////////
-
     }
 
     // Update is called once per frame
