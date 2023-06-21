@@ -109,8 +109,8 @@ public class GameManager : MonoBehaviour
 
         boostType = _BoostType;
         secondsOfBoost = _Seconds;
-        OnBoosted(boostType);
-        StartCoroutine(BoostCoroutine());
+        //OnBoosted(boostType);
+        //StartCoroutine(BoostCoroutine());
     }
     IEnumerator BoostCoroutine() 
     {
