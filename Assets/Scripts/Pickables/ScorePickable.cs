@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForcePickable : Pickable
+public class ScorePickable : Pickable
 {
-    public float forceMultiplier = 2;
-    private float earlierForce;
+    public float scoreMultiplier = 2;
+    private float earlierScore;
 
-    
+
     public override void OnTriggerWithPlayer(PlayerController player)
     {
-        if (player.forceBoosted) return;
+        if (player.scoreBoosted) return;
 
-        earlierForce = player.playerForce;
-        player.playerForce *= forceMultiplier;
+        earlierScore = player.scoreMultiplier;
+        player.scoreMultiplier *= scoreMultiplier;
 
         meshRenderer.enabled = false;
         objectCollider.enabled = false;
-        player.forceBoosted = true;
+        player.scoreBoosted = true;
 
         StartCoroutine(CountdownToReset(player));
 
@@ -25,9 +25,7 @@ public class ForcePickable : Pickable
 
     public override void ResetPlayer(PlayerController player)
     {
-        player.playerForce = earlierForce;
-        player.forceBoosted = false;
+        player.scoreMultiplier = earlierScore;
+        player.scoreBoosted = false;
     }
-
-    
 }

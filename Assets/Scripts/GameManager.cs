@@ -19,14 +19,16 @@ public class GameManager : MonoBehaviour
     private int internalWinningPoints;
     private bool looseByLife;//hay que poner un delegado de player a esto, que setee la perdida por vida
     private bool looseByTime;
-    private int numSpeedPickables = 2;
+    private int numSpeedPickables = 1;
     private int numForcePickables = 1;
+    private int numScorePickables = 2;
 
     public List<Vector2> ListOfAllSpawners;
     public List<Vector2> ListOfOccupiedSpawners;
 
     public SpeedPickable speedPickable;
     public ForcePickable forcePickable;
+    public ScorePickable scorePickable;
 
     public static GameManager Instance
     {
@@ -56,13 +58,11 @@ public class GameManager : MonoBehaviour
 
         ListOfOccupiedSpawners = new List<Vector2>();
 
-        if (numSpeedPickables + numForcePickables > ListOfAllSpawners.Count)
+        if (numSpeedPickables + numForcePickables + numScorePickables <= ListOfAllSpawners.Count)
         {
-            numSpeedPickables = 0;
-            numForcePickables = 0;
+            SpawnPickables();
         }
 
-        SpawnPickables();
         /////////////////////////////////////////////////////////////////////////////////////
 
     }
@@ -130,6 +130,10 @@ public class GameManager : MonoBehaviour
         {
             SpawnForcePickable();
         }
+        for (int i = 0; i < numScorePickables; i++)
+        {
+            SpawnScorePickable();
+        }
     }
 
     void SpawnSpeedPickable()
@@ -162,6 +166,23 @@ public class GameManager : MonoBehaviour
         {
             Vector3 spawnerPos = new Vector3(ListOfAllSpawners[arrayPos].x, 1, ListOfAllSpawners[arrayPos].y);
             Instantiate<ForcePickable>(forcePickable, spawnerPos, forcePickable.transform.rotation);
+            ListOfOccupiedSpawners.Add(ListOfAllSpawners[arrayPos]);
+        }
+    }
+
+    void SpawnScorePickable()
+    {
+        int size = ListOfAllSpawners.Count;
+        int arrayPos = Random.Range(0, size);
+
+        if (ListOfOccupiedSpawners.Contains(ListOfAllSpawners[arrayPos]))
+        {
+            SpawnScorePickable();
+        }
+        else
+        {
+            Vector3 spawnerPos = new Vector3(ListOfAllSpawners[arrayPos].x, 1, ListOfAllSpawners[arrayPos].y);
+            Instantiate<ScorePickable>(scorePickable, spawnerPos, scorePickable.transform.rotation);
             ListOfOccupiedSpawners.Add(ListOfAllSpawners[arrayPos]);
         }
     }

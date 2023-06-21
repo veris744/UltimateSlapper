@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Pickable : MonoBehaviour
 {
-    public float pickableTime;
+    public float pickableTime = 5;
     public float timeToRegenerate = -1;
 
 

@@ -11302,6 +11302,7 @@ MonoBehaviour:
   ListOfOccupiedSpawners: []
   speedPickable: {fileID: 8707317469485049265, guid: b10d4ed18512b1c40a7eb4a7a5c38041, type: 3}
   forcePickable: {fileID: 4533247327981966553, guid: b86c4f6c8dac40141b493a39e9ad65f7, type: 3}
+  scorePickable: {fileID: 8838114325624189943, guid: 6baf6b36b8d5c0243b2de8adb79bd58d, type: 3}
 --- !u!4 &1065094890
 Transform:
   m_ObjectHideFlags: 0
@@ -22098,8 +22099,12 @@ MonoBehaviour:
   playerSpeed: 5
   playerForce: 5
   HP: 0
+  scoreMultiplier: 1
   jumpHeight: 3
   cam: {fileID: 963194227}
+  speedBoosted: 0
+  forceBoosted: 0
+  scoreBoosted: 0
 --- !u!4 &5901452233939112719
 Transform:
   m_ObjectHideFlags: 0
