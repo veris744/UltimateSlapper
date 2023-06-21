@@ -17,12 +17,14 @@ public class SlapAction : MonoBehaviour
             if (hit.rigidbody)
             {
                 hit.rigidbody.AddForce(transform.forward * slapForce);
-                
-            }
-            if (hit.rigidbody && hit.collider.GetComponent<Ragdoll>())
-            {
-                hit.collider.GetComponent<Ragdoll>().EnableRagdoll(true);
-                hit.rigidbody.AddForce(transform.forward * slapForce);
+                if (hit.collider.GetComponent<Ragdoll>())
+                    hit.collider.GetComponent<Ragdoll>().EnableRagdoll(true);
+
+                if (hit.collider.GetComponent<SlapCounter>())
+                {
+                    hit.collider.GetComponent<SlapCounter>().goSlap = true;
+                    ((GameManager)GameManager.Instance).isCombo = true;
+                }
             }
         }
     }
