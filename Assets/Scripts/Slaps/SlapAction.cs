@@ -12,7 +12,7 @@ public class SlapAction : MonoBehaviour
     public void Slap(float force)
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward * slapRange, out hit))
+        if (Physics.Raycast(transform.position, transform.forward * slapRange, out hit, slapRange))
         {
             if (hit.rigidbody)
             {
@@ -24,6 +24,8 @@ public class SlapAction : MonoBehaviour
                 {
                     hit.collider.GetComponent<SlapCounter>().goSlap = true;
                     ((GameManager)GameManager.Instance).isCombo = true;
+                    ((GameManager)GameManager.Instance).comboTimer = ConstParamenters.COMBO_TIMER_DEFAULT;
+                    ((GameManager)GameManager.Instance).slapPointsCount = hit.collider.GetComponent<SlapCounter>().pointsToAdd;
                 }
             }
         }
