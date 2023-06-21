@@ -11,7 +11,7 @@ public class PlayerBehavior : MonoBehaviour
     public float JumpForce = 0.4f;
     public float thurst = 10;
 
-    bool bIsGrounded = true;
+    public bool bIsGrounded = true;
 
     private Vector3 moveInput;
     private Vector3 moveVelocity;
@@ -38,7 +38,7 @@ public class PlayerBehavior : MonoBehaviour
         moveInput = new Vector3(hAxis, 0f, vAxis);
         moveVelocity = transform.forward * Speed * moveInput.sqrMagnitude;
 
-        rig.velocity = new Vector3(hAxis * Speed, rig.velocity.y, vAxis * Speed);
+        //rig.velocity = new Vector3(hAxis * Speed, rig.velocity.y, vAxis * Speed);
 
         Vector3 cameraForward = mainCamera.transform.forward;
         cameraForward.y = 0;
