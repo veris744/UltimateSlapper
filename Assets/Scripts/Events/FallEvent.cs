@@ -22,7 +22,6 @@ public class FallEvent : Event
         {
             float r = Random.Range(0f, 1f);
             if (r < 0.5f)
-            if (true)
             {
                 fallingObject.gameObject.SetActive(true);
                 fallingObject.transform.position = player.transform.position + Offset;

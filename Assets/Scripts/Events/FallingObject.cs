@@ -5,7 +5,8 @@ using UnityEngine;
 public class FallingObject : MonoBehaviour
 {
     public int damageToPlayer = 5;
-    public PlayerController player;
+    [HideInInspector]
+    public  PlayerController player;
     private Rigidbody rb;
 
     // Start is called before the first frame update
