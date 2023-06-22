@@ -16,6 +16,8 @@ public class SpeedPickable : Pickable
     {
         if (player.speedBoosted) return;
 
+        audioSource.Play();
+
         GameManager.Instance.PlayerBoosted(boostType, pickableTime);
 
         earlierSpeed = player.playerSpeed;

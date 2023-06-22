@@ -12,6 +12,7 @@ public abstract class Pickable : MonoBehaviour
     protected MeshRenderer meshRenderer;
     protected SphereCollider objectCollider;
     protected GameManager gameManager;
+    protected AudioSource audioSource;
 
     public abstract void OnTriggerWithPlayer(PlayerController player);
     
@@ -25,6 +26,7 @@ public abstract class Pickable : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         objectCollider = GetComponent<SphereCollider>();
         gameManager = GameManager.Instance;
+        audioSource = GetComponent<AudioSource>();
     }
 
 

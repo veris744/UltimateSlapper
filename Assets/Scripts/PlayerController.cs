@@ -11,22 +11,26 @@ public class PlayerController : MonoBehaviour
     [Header("CHARACTER")]
     public float playerSpeed = 5f;
     public float playerForce = 1000f;
-    public float HP = 0;
-    public float scoreMultiplier = 1;
     [SerializeField] private float jumpHeight = 3f;
 
     [Header("OTHERS")]
     [SerializeField] private Camera cam;
 
-    public bool speedBoosted = false;
-    public bool forceBoosted = false;
-    public bool scoreBoosted = false;
+    [HideInInspector] public bool speedBoosted;
+    [HideInInspector] public bool forceBoosted;
+    [HideInInspector] public bool scoreBoosted;
 
     private void Awake()
     {
         playerController = GetComponent<CharacterController>();
     }
 
+    private void Start()
+    {
+        speedBoosted = false;
+        forceBoosted = false;
+        scoreBoosted = false;
+    }
 
     private void Update()
     {

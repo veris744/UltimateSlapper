@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ScorePickable : Pickable
 {
-    public float scoreMultiplier = 2;
-    private float earlierScore;
+    public int scoreMultiplier = 2;
+    private int earlierScore;
 
     private void Awake()
     {
@@ -18,12 +18,14 @@ public class ScorePickable : Pickable
 
         GameManager.Instance.PlayerBoosted(boostType, pickableTime);
 
-        earlierScore = player.scoreMultiplier;
-        player.scoreMultiplier *= scoreMultiplier;
+        earlierScore = gameManager.scoreMultiplier;
+        gameManager.scoreMultiplier = scoreMultiplier;
 
         meshRenderer.enabled = false;
         objectCollider.enabled = false;
         player.scoreBoosted = true;
+
+        audioSource.Play();
 
         StartCoroutine(CountdownToReset(player));
 
@@ -31,7 +33,7 @@ public class ScorePickable : Pickable
 
     public override void ResetPlayer(PlayerController player)
     {
-        player.scoreMultiplier = earlierScore;
+        gameManager.scoreMultiplier = earlierScore;
         player.scoreBoosted = false;
     }
 }

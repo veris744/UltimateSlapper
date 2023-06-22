@@ -5,21 +5,28 @@ using UnityEngine;
 public class FallingObject : MonoBehaviour
 {
     public int damageToPlayer = 5;
+    public float restingTime = 5;
+
     [HideInInspector]
     public  PlayerController player;
+
     private Rigidbody rb;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && player != null)
         {
+            player = null;
+            audioSource.Play();
             GameManager.Instance.AddPoints(-damageToPlayer);
         }
         player = null;

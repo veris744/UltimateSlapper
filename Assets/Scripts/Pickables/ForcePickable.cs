@@ -16,6 +16,8 @@ public class ForcePickable : Pickable
     {
         if (player.forceBoosted) return;
 
+        audioSource.Play();
+
         GameManager.Instance.PlayerBoosted(boostType, pickableTime);
 
         earlierForce = player.playerForce;
