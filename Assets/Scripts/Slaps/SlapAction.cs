@@ -5,18 +5,18 @@ using UnityEngine;
 public class SlapAction : MonoBehaviour
 {
     [Header("PARAMETERS")]
-    public float slapForce = 2000f;
+    //public float slapForce = 1000f;
     public float slapRange = 2f;
     
 
-    public void Slap()
+    public void Slap(float force)
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward * slapRange, out hit))
+        if (Physics.Raycast(transform.position, transform.forward * slapRange, out hit, slapRange))
         {
             if (hit.rigidbody)
             {
-                hit.rigidbody.AddForce(transform.forward * slapForce);
+                hit.rigidbody.AddForce(transform.forward * force);
                 if (hit.collider.GetComponent<Ragdoll>())
                     hit.collider.GetComponent<Ragdoll>().EnableRagdoll(true);
 
@@ -24,6 +24,8 @@ public class SlapAction : MonoBehaviour
                 {
                     hit.collider.GetComponent<SlapCounter>().goSlap = true;
                     ((GameManager)GameManager.Instance).isCombo = true;
+                    ((GameManager)GameManager.Instance).comboTimer = ConstParamenters.COMBO_TIMER_DEFAULT;
+                    ((GameManager)GameManager.Instance).slapPointsCount = hit.collider.GetComponent<SlapCounter>().pointsToAdd;
                 }
             }
         }

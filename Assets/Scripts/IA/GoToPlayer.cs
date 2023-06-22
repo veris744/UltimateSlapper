@@ -17,6 +17,9 @@ public class GoToPlayer : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+
+        animator.GetComponent<NavMeshAgent>().destination = playerPositionOnHit;
+
         if (animator.GetComponent<NavMeshAgent>().remainingDistance < 0.5)
         {
            float distance = Vector3.Distance(animator.transform.position, GameObject.FindGameObjectWithTag("Player").transform.position);

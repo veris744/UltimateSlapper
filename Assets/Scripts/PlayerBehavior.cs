@@ -23,7 +23,7 @@ public class PlayerBehavior : MonoBehaviour
     void Start()
     {
         Player = gameObject;
-        rig = GetComponent<Rigidbody>();
+        //rig = GetComponent<Rigidbody>();
         bIsGrounded = true;
         mainCamera = Camera.main;
         animator = GetComponent<Animator>();
@@ -61,7 +61,7 @@ public class PlayerBehavior : MonoBehaviour
     public void Jump()
     {
         bIsGrounded = false;
-        rig.AddForce(0, thurst, 0, ForceMode.Impulse);
+        //rig.AddForce(0, thurst, 0, ForceMode.Impulse);
         //animator.SetBool("OnJump", true);
     }
 

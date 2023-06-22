@@ -7,7 +7,7 @@ public class Car : MonoBehaviour
     public Vector3 carImpulse;
     private bool run = false;
     public float timeToExist;
-    public float damageToPlayer = 5;
+    public int damageToPlayer = 5;
 
     private Rigidbody carRb;
 
@@ -51,7 +51,7 @@ public class Car : MonoBehaviour
         {
             carRb.AddForce(collision.impulse.x*1.75f, collision.impulse.y*1.75f + 10, collision.impulse.z * 1.75f, ForceMode.Impulse);
             run = false;
-            collision.gameObject.GetComponent<PlayerController>().HP = -damageToPlayer;
+            GameManager.Instance.AddPoints(-damageToPlayer);
             StopCoroutine(CountdownToLeave());
             StartCoroutine(CountdownToLeave());
         }

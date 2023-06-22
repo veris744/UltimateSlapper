@@ -9,7 +9,8 @@ public class PlayerSlap : SlapAction
     {
         if (Input.GetButtonDown("Fire1") && !isSlapped)
         {
-            Slap();
+            
+            Slap(GetComponentInParent<PlayerController>().playerForce);
             isSlapped = true;
         }
         if (Input.GetButtonUp("Fire1"))

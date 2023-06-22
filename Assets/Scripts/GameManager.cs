@@ -4,21 +4,34 @@ using System.Drawing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public static class ConstParamenters
+{
+    public const float COMBO_TIMER_DEFAULT = 5f;
+}
+
 public class GameManager : MonoBehaviour
 {
     public delegate void OnScoreChanges(int points);
     public event OnScoreChanges OnChangePoints;
-    public delegate void OnBoost(int points);
+    public delegate void OnLifeChanges(int life);
+    public event OnLifeChanges OnChangeLife;
+    public delegate void OnBoost(int BoostType);
     public event OnBoost OnBoosted;
     public event OnBoost FinishBoosted;
 
     public float timer;
+    [HideInInspector] public float comboTimer = 0;
+    [HideInInspector] public int slapCount = 0;
+    [HideInInspector] public int slapPointsCount = 0;
+    [HideInInspector] public bool isCombo = false;
     private int points;
+    private int life;
     private int boostType;
     private float secondsOfBoost;
     private int internalWinningPoints;
     private bool looseByLife;//hay que poner un delegado de player a esto, que setee la perdida por vida
     private bool looseByTime;
+    private bool itsPlayableLevel = false;
     private int numSpeedPickables = 1;
     private int numForcePickables = 1;
     private int numScorePickables = 2;
@@ -39,6 +52,7 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
         Instance = this;
+        DontDestroyOnLoad(this);
     }
 
     // Start is called before the first frame update
@@ -47,43 +61,71 @@ public class GameManager : MonoBehaviour
         points = 0;
         looseByLife = false;
         looseByTime = false;
+    }
 
-
-        //Pickable Spawners////////////////////////////////////////////////////////////////
-        ListOfAllSpawners = new List<Vector2>();
-        ListOfAllSpawners.Add(new Vector2(13, 0));
-        ListOfAllSpawners.Add(new Vector2(0, 0));
-        ListOfAllSpawners.Add(new Vector2(13, 8));
-        ListOfAllSpawners.Add(new Vector2(0, 8));
-
-        ListOfOccupiedSpawners = new List<Vector2>();
-
-        if (numSpeedPickables + numForcePickables + numScorePickables <= ListOfAllSpawners.Count)
+    private void OnLevelWasLoaded(int level)
+    {
+        if (level == 1)
         {
-            SpawnPickables();
+            ListOfAllSpawners = new List<Vector2>();
+            ListOfOccupiedSpawners = new List<Vector2>();
+
+
+            ListOfAllSpawners.Add(new Vector2(13, 0));
+            ListOfAllSpawners.Add(new Vector2(0, 0));
+            ListOfAllSpawners.Add(new Vector2(13, 8));
+            ListOfAllSpawners.Add(new Vector2(0, 8));
+
+            if (numSpeedPickables + numForcePickables + numScorePickables <= ListOfAllSpawners.Count)
+            {
+                SpawnPickables();
+            }
+            itsPlayableLevel = true;
         }
-
-        /////////////////////////////////////////////////////////////////////////////////////
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
-        if(timer <= 0) 
+        if (itsPlayableLevel)
         {
-            looseByTime = true;
-            //DieByTime();
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                looseByTime = true;
+                //DieByTime();
+            }
         }
 
-        if(points >= internalWinningPoints) 
+
+        if (points >= internalWinningPoints)
         {
             //WinByPoints();
         }
 
+        if (comboTimer > 0)
+        {
+            Debug.Log("Hay combo!");
+            comboTimer -= Time.deltaTime;
+        }
+        else if (comboTimer < 0 && isCombo)
+        {
+            Debug.Log("No hay combo!");
+            isCombo = false;
+            if (slapCount == 0)
+            {
+                AddPoints(slapPointsCount);
+                slapPointsCount = 0;
+            }
+            else
+            {
+                AddPoints(slapPointsCount * slapCount);
+                slapPointsCount = 0;
+                slapCount = 0;
+            }
+        }
     }
-    public void PlayerBoosted(int _BoostType,float _Seconds)
+    public void PlayerBoosted(int _BoostType, float _Seconds)
     {
         //speed boost is 1
         //force boost is 2
@@ -94,28 +136,33 @@ public class GameManager : MonoBehaviour
         OnBoosted(boostType);
         StartCoroutine(BoostCoroutine());
     }
-    IEnumerator BoostCoroutine() 
+    IEnumerator BoostCoroutine()
     {
         yield return new WaitForSeconds(secondsOfBoost);
         boostType = 0;
         secondsOfBoost = 0;
         FinishBoosted(boostType);
     }
-   public void AddPoints(int _Points) 
+    public void AddPoints(int _Points)
     {
         points += _Points;
         OnChangePoints(points);
     }
-    void DieByLife() 
+    public void AddLifes(int _Life)
+    {
+        life += _Life;
+        OnChangeLife(life);
+    }
+    void DieByLife()
     {
         SceneManager.LoadScene("LoseScene");
 
     }
-    void DieByTime() 
+    void DieByTime()
     {
         SceneManager.LoadScene("LoseScene");
     }
-    void WinByPoints() 
+    void WinByPoints()
     {
         SceneManager.LoadScene("WinScene");
     }
@@ -126,7 +173,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnPickables()
     {
-        for (int i = 0; i<numSpeedPickables; i++)
+        for (int i = 0; i < numSpeedPickables; i++)
         {
             SpawnSpeedPickable();
         }
