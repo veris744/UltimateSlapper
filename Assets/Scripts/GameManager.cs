@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int slapCount = 0;
     [HideInInspector] public int slapPointsCount = 0;
     [HideInInspector] public bool isCombo = false;
+    [HideInInspector] public int scoreMultiplier;
     private int points;
     private int life;
     private int boostType;
@@ -32,9 +33,10 @@ public class GameManager : MonoBehaviour
     private bool looseByLife;//hay que poner un delegado de player a esto, que setee la perdida por vida
     private bool looseByTime;
     private bool itsPlayableLevel = false;
-    private int numSpeedPickables = 1;
-    private int numForcePickables = 1;
-    private int numScorePickables = 2;
+
+    private int numSpeedPickables = 6;
+    private int numForcePickables = 6;
+    private int numScorePickables = 6;
 
     public List<Vector2> ListOfAllSpawners;
     public List<Vector2> ListOfOccupiedSpawners;
@@ -61,6 +63,7 @@ public class GameManager : MonoBehaviour
         points = 0;
         looseByLife = false;
         looseByTime = false;
+        scoreMultiplier = 1;
     }
 
     private void OnLevelWasLoaded(int level)
@@ -71,10 +74,35 @@ public class GameManager : MonoBehaviour
             ListOfOccupiedSpawners = new List<Vector2>();
 
 
-            ListOfAllSpawners.Add(new Vector2(13, 0));
-            ListOfAllSpawners.Add(new Vector2(0, 0));
-            ListOfAllSpawners.Add(new Vector2(13, 8));
-            ListOfAllSpawners.Add(new Vector2(0, 8));
+            ListOfAllSpawners.Add(new Vector2(0, 5));
+            ListOfAllSpawners.Add(new Vector2(50, 5));
+            ListOfAllSpawners.Add(new Vector2(100, 5));
+            ListOfAllSpawners.Add(new Vector2(-50, 5));
+            ListOfAllSpawners.Add(new Vector2(-100, 5));
+
+            ListOfAllSpawners.Add(new Vector2(0, 47));
+            ListOfAllSpawners.Add(new Vector2(50, 47));
+            ListOfAllSpawners.Add(new Vector2(100, 47));
+            ListOfAllSpawners.Add(new Vector2(-50, 47));
+            ListOfAllSpawners.Add(new Vector2(-100, 47));
+
+            ListOfAllSpawners.Add(new Vector2(0, -81));
+            ListOfAllSpawners.Add(new Vector2(50, -81));
+            ListOfAllSpawners.Add(new Vector2(100, -81));
+            ListOfAllSpawners.Add(new Vector2(-50, -81));
+            ListOfAllSpawners.Add(new Vector2(-100, -81));
+
+            ListOfAllSpawners.Add(new Vector2(120, 90));
+            ListOfAllSpawners.Add(new Vector2(60, 90));
+            ListOfAllSpawners.Add(new Vector2(28, 90));
+            ListOfAllSpawners.Add(new Vector2(-119, 90));
+            ListOfAllSpawners.Add(new Vector2(87, 90));
+
+            ListOfAllSpawners.Add(new Vector2(0, 129));
+            ListOfAllSpawners.Add(new Vector2(50, 129));
+            ListOfAllSpawners.Add(new Vector2(100, 129));
+            ListOfAllSpawners.Add(new Vector2(-50, 129));
+            ListOfAllSpawners.Add(new Vector2(-100, 129));
 
             if (numSpeedPickables + numForcePickables + numScorePickables <= ListOfAllSpawners.Count)
             {
@@ -145,7 +173,11 @@ public class GameManager : MonoBehaviour
     }
     public void AddPoints(int _Points)
     {
-        points += _Points;
+        if (_Points < 0)
+            points += _Points;
+        else
+            points += (scoreMultiplier * _Points);
+
         OnChangePoints(points);
     }
     public void AddLifes(int _Life)

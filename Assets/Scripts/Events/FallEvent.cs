@@ -5,7 +5,6 @@ using UnityEngine;
 public class FallEvent : Event
 {
     public FallingObject fallingObject;
-    public float restingTime = 5;
     [Range(0, 1)]
     public float probability = 0.5f;
     //public float destroyTime = 5;
@@ -17,12 +16,12 @@ public class FallEvent : Event
 
     public override void OnTriggerWithPlayer(PlayerController player)
     {
-        fallingObject.player = player;
         if (!isResting)
         {
             float r = Random.Range(0f, 1f);
             if (r < 0.5f)
             {
+                fallingObject.player = player;
                 fallingObject.gameObject.SetActive(true);
                 fallingObject.transform.position = player.transform.position + Offset;
                 isResting = true;
@@ -34,7 +33,7 @@ public class FallEvent : Event
 
     public IEnumerator RestCountdown()
     {
-        float currCountdownValue = restingTime;
+        float currCountdownValue = fallingObject.restingTime;
         while (currCountdownValue > 0)
         {
             yield return new WaitForSeconds(1.0f);
