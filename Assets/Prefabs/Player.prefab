@@ -1120,7 +1120,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: cfca33ed357b83e4599ecb56f4e30451, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -1305,7 +1305,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 1.46
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5581674961368329883
@@ -1322,7 +1322,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!143 &5581674961368329886
 CharacterController:
@@ -1335,7 +1335,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 0.95
+  m_Height: 1.76
   m_Radius: 0.56
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -1358,6 +1358,7 @@ MonoBehaviour:
   playerForce: 1000
   HP: 2
   scoreMultiplier: 1
+  animator: {fileID: 0}
   jumpHeight: 3
   cam: {fileID: 0}
   speedBoosted: 0

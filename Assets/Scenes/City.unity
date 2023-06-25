@@ -4099,6 +4099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6630d1e88fe5147bd4b8469c89a5fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsToAdd: 100
   lastSlapped: {fileID: 0}
   toSlap: {fileID: 0}
   canCount: 1
@@ -5918,10 +5919,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 963194227}
-    - target: {fileID: 5581674961368329887, guid: 254c312fc14347945b9254c130fa6918, type: 3}
-      propertyPath: playerForce
-      value: 1000
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 254c312fc14347945b9254c130fa6918, type: 3}
 --- !u!1 &558337331 stripped
@@ -19929,6 +19926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6630d1e88fe5147bd4b8469c89a5fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsToAdd: 100
   lastSlapped: {fileID: 0}
   toSlap: {fileID: 0}
   canCount: 1
