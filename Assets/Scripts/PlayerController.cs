@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     [Header("CHARACTER")]
     public float playerSpeed = 5f;
     public float playerForce = 1000f;
+    public float HP = 0;
+    public float scoreMultiplier = 1;
+    [HideInInspector] public Animator animator;
     [SerializeField] private float jumpHeight = 3f;
 
     [Header("OTHERS")]
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerController = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Start()
@@ -34,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        
+        animator.SetFloat("Speed", Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 ? 1f : 0f)
     }
 
     private void FixedUpdate()
