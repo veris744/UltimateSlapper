@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        animator.SetFloat("Speed", Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 ? 1f : 0f)
+        animator.SetFloat("Speed", Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 ? 1f : 0f);
     }
 
     private void FixedUpdate()
