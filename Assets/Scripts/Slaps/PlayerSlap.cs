@@ -12,6 +12,7 @@ public class PlayerSlap : SlapAction
             
             Slap(GetComponentInParent<PlayerController>().playerForce);
             isSlapped = true;
+            GetComponentInParent<PlayerController>().animator.SetTrigger("Slap");
         }
         if (Input.GetButtonUp("Fire1"))
             isSlapped = false;
