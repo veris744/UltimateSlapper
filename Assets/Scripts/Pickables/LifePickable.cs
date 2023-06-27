@@ -19,7 +19,6 @@ public class LifePickable : Pickable
 
         meshRenderer.enabled = false;
         objectCollider.enabled = false;
-        player.forceBoosted = true;
 
         StartCoroutine(CountdownToReset(player));
 

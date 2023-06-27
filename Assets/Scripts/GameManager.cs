@@ -32,10 +32,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int internalWinningPoints;
     private bool itsPlayableLevel = false;
 
-    private int numSpeedPickables = 5;
-    private int numForcePickables = 5;
-    private int numScorePickables = 5;
-    private int numLifePickables = 5;
+    private int numSpeedPickables = 8;
+    private int numForcePickables = 8;
+    private int numScorePickables = 8;
+    private int numLifePickables = 8;
 
     public List<Vector2> ListOfAllSpawners;
     public List<Vector2> ListOfOccupiedSpawners;
@@ -67,28 +67,40 @@ public class GameManager : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        if (level == 1)
+        if (level == 2)
         {
             ListOfAllSpawners = new List<Vector2>();
             ListOfOccupiedSpawners = new List<Vector2>();
 
 
             ListOfAllSpawners.Add(new Vector2(0, 5));
+            ListOfAllSpawners.Add(new Vector2(25, 5));
             ListOfAllSpawners.Add(new Vector2(50, 5));
+            ListOfAllSpawners.Add(new Vector2(75, 5));
             ListOfAllSpawners.Add(new Vector2(100, 5));
+            ListOfAllSpawners.Add(new Vector2(-25, 5));
             ListOfAllSpawners.Add(new Vector2(-50, 5));
+            ListOfAllSpawners.Add(new Vector2(-75, 5));
             ListOfAllSpawners.Add(new Vector2(-100, 5));
 
             ListOfAllSpawners.Add(new Vector2(0, 47));
+            ListOfAllSpawners.Add(new Vector2(25, 47));
             ListOfAllSpawners.Add(new Vector2(50, 47));
+            ListOfAllSpawners.Add(new Vector2(75, 47));
             ListOfAllSpawners.Add(new Vector2(100, 47));
+            ListOfAllSpawners.Add(new Vector2(-25, 47));
             ListOfAllSpawners.Add(new Vector2(-50, 47));
+            ListOfAllSpawners.Add(new Vector2(-75, 47));
             ListOfAllSpawners.Add(new Vector2(-100, 47));
 
             ListOfAllSpawners.Add(new Vector2(0, -81));
+            ListOfAllSpawners.Add(new Vector2(25, -81));
             ListOfAllSpawners.Add(new Vector2(50, -81));
+            ListOfAllSpawners.Add(new Vector2(75, -81));
             ListOfAllSpawners.Add(new Vector2(100, -81));
+            ListOfAllSpawners.Add(new Vector2(-25, -81));
             ListOfAllSpawners.Add(new Vector2(-50, -81));
+            ListOfAllSpawners.Add(new Vector2(-75, -81));
             ListOfAllSpawners.Add(new Vector2(-100, -81));
 
             ListOfAllSpawners.Add(new Vector2(120, 90));
