@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
             else
             {
                 this.Pause();
+               
             }
         }
     }
@@ -45,6 +46,7 @@ public class UIManager : MonoBehaviour
     public void Pause()
     {
         this.IsPaused = true;
+        Cursor.visible = true;
         Time.timeScale = 0;
         PausePanel.SetActive(true);
         UIPanel.SetActive(false);
@@ -53,6 +55,7 @@ public class UIManager : MonoBehaviour
     public void ButtonResumeGame()
     {
         //Falta la tecla p y despausar :v
+        Cursor.visible = false;
         this.IsPaused = false;
         Time.timeScale = 1;
         PanelOptions.SetActive(false);
