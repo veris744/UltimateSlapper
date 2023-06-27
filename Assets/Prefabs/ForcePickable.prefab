@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2947b1aa09b2b2e4494dc554bef7fbe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickableTime: 5
+  pickableTime: 8
   timeToRegenerate: 3
   forceMultiplier: 2
 --- !u!82 &2729053891553558949

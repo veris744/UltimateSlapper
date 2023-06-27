@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -451,12 +451,44 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7246150191576569167, guid: f3093770485c12f47a8b24558c972853, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246150191576569167, guid: f3093770485c12f47a8b24558c972853, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246150191576569167, guid: f3093770485c12f47a8b24558c972853, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246150191576569167, guid: f3093770485c12f47a8b24558c972853, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7246150191946889821, guid: f3093770485c12f47a8b24558c972853, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1158015570}
     - target: {fileID: 7246150192827145168, guid: f3093770485c12f47a8b24558c972853, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246150192827145171, guid: f3093770485c12f47a8b24558c972853, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246150192827145171, guid: f3093770485c12f47a8b24558c972853, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246150192827145171, guid: f3093770485c12f47a8b24558c972853, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246150192827145171, guid: f3093770485c12f47a8b24558c972853, type: 3}
+      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7246150192827145181, guid: f3093770485c12f47a8b24558c972853, type: 3}
@@ -474,6 +506,18 @@ PrefabInstance:
     - target: {fileID: 7246150192827145181, guid: f3093770485c12f47a8b24558c972853, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246150193029064708, guid: f3093770485c12f47a8b24558c972853, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246150193029064708, guid: f3093770485c12f47a8b24558c972853, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246150193029064708, guid: f3093770485c12f47a8b24558c972853, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 7246150193029064710, guid: f3093770485c12f47a8b24558c972853, type: 3}
       propertyPath: m_Pivot.x
