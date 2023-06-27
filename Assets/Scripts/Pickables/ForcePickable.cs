@@ -34,7 +34,9 @@ public class ForcePickable : Pickable
     public override void ResetPlayer(PlayerController player)
     {
         player.playerForce = earlierForce;
+        player.speedBoosted = false;
         player.forceBoosted = false;
+        player.scoreBoosted = false;
     }
 
     
