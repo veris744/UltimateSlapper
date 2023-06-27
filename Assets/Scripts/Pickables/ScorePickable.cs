@@ -14,7 +14,7 @@ public class ScorePickable : Pickable
 
     public override void OnTriggerWithPlayer(PlayerController player)
     {
-        if (player.scoreBoosted) return;
+        if (player.forceBoosted || player.scoreBoosted || player.speedBoosted) return;
 
         GameManager.Instance.PlayerBoosted(boostType, pickableTime);
 

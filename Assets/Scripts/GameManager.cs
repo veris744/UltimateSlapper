@@ -32,9 +32,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int internalWinningPoints;
     private bool itsPlayableLevel = false;
 
-    private int numSpeedPickables = 6;
-    private int numForcePickables = 6;
-    private int numScorePickables = 6;
+    private int numSpeedPickables = 5;
+    private int numForcePickables = 5;
+    private int numScorePickables = 5;
+    private int numLifePickables = 5;
 
     public List<Vector2> ListOfAllSpawners;
     public List<Vector2> ListOfOccupiedSpawners;
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
     public SpeedPickable speedPickable;
     public ForcePickable forcePickable;
     public ScorePickable scorePickable;
+    public LifePickable lifePickable;
 
     public static GameManager Instance
     {
@@ -223,6 +225,10 @@ public class GameManager : MonoBehaviour
         {
             SpawnScorePickable();
         }
+        for (int i = 0; i < numLifePickables; i++)
+        {
+            SpawnLifePickable();
+        }
     }
 
     void SpawnSpeedPickable()
@@ -276,4 +282,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    void SpawnLifePickable()
+    {
+        int size = ListOfAllSpawners.Count;
+        int arrayPos = Random.Range(0, size);
+
+        if (ListOfOccupiedSpawners.Contains(ListOfAllSpawners[arrayPos]))
+        {
+            SpawnLifePickable();
+        }
+        else
+        {
+            Vector3 spawnerPos = new Vector3(ListOfAllSpawners[arrayPos].x, 1, ListOfAllSpawners[arrayPos].y);
+            Instantiate<LifePickable>(lifePickable, spawnerPos, lifePickable.transform.rotation);
+            ListOfOccupiedSpawners.Add(ListOfAllSpawners[arrayPos]);
+        }
+    }
 }

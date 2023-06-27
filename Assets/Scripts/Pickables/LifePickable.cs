@@ -2,26 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForcePickable : Pickable
+public class LifePickable : Pickable
 {
-    public float forceMultiplier = 2;
-    private float earlierForce;
+    public float extraLife = 1;
 
     private void Awake()
     {
-        boostType = 2;
+        boostType = 4;
     }
 
     public override void OnTriggerWithPlayer(PlayerController player)
     {
-        if (player.forceBoosted || player.scoreBoosted || player.speedBoosted) return;
-
         audioSource.Play();
 
-        GameManager.Instance.PlayerBoosted(boostType, pickableTime);
-
-        earlierForce = player.playerForce;
-        player.playerForce *= forceMultiplier;
+        GameManager.Instance.AddLifes(1);
 
         meshRenderer.enabled = false;
         objectCollider.enabled = false;
@@ -33,9 +27,6 @@ public class ForcePickable : Pickable
 
     public override void ResetPlayer(PlayerController player)
     {
-        player.playerForce = earlierForce;
-        player.forceBoosted = false;
+        
     }
-
-    
 }

@@ -14,7 +14,7 @@ public class SpeedPickable : Pickable
 
     public override void OnTriggerWithPlayer(PlayerController player)
     {
-        if (player.speedBoosted) return;
+        if (player.forceBoosted || player.scoreBoosted || player.speedBoosted) return;
 
         audioSource.Play();
 
