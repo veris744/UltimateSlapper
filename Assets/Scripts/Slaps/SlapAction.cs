@@ -18,7 +18,15 @@ public class SlapAction : MonoBehaviour
             {
                 hit.rigidbody.AddForce(transform.forward * force);
                 if (hit.collider.GetComponent<Ragdoll>())
+                {
                     hit.collider.GetComponent<Ragdoll>().EnableRagdoll(true);
+                    if (hit.collider.GetComponent<Animator>())
+                    {
+                        hit.collider.GetComponent<Animator>().enabled = false;
+                    }
+                }
+
+                
 
                 if (hit.collider.GetComponent<SlapCounter>())
                 {
