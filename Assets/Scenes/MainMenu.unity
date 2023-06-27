@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -333,12 +333,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a343aed21b3ecd41ae5018959312124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
+  timer: 300
   comboTimer: 0
   slapCount: 0
   slapPointsCount: 0
   isCombo: 0
   scoreMultiplier: 0
+  internalWinningPoints: 1000
   ListOfAllSpawners: []
   ListOfOccupiedSpawners: []
   speedPickable: {fileID: 8707317469485049265, guid: b10d4ed18512b1c40a7eb4a7a5c38041, type: 3}

@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     private int life;
     private int boostType;
     private float secondsOfBoost;
-    private int internalWinningPoints;
+   [SerializeField] private int internalWinningPoints;
     private bool looseByLife;//hay que poner un delegado de player a esto, que setee la perdida por vida
     private bool looseByTime;
     private bool itsPlayableLevel = false;
@@ -121,14 +121,18 @@ public class GameManager : MonoBehaviour
             if (timer <= 0)
             {
                 looseByTime = true;
-                //DieByTime();
+                DieByTime();
             }
         }
-
+        if (life <= 0)
+        {
+            looseByLife = true;
+            DieByLife();
+        }
 
         if (points >= internalWinningPoints)
         {
-            //WinByPoints();
+            WinByPoints();
         }
 
         if (comboTimer > 0)
