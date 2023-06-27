@@ -20639,6 +20639,7 @@ MonoBehaviour:
   - {fileID: 399124228}
   lifeText: {fileID: 399124227}
   scoreText: {fileID: 399124226}
+  countText: {fileID: 1654880718}
 --- !u!4 &949189193
 Transform:
   m_ObjectHideFlags: 0
@@ -21125,26 +21126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b602e1c818f23c841bace52f42e99886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  smoothCameraRotation: 12
-  cullingLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  lockCamera: 0
-  rightOffset: 0
-  defaultDistance: 2.5
-  height: 1.4
-  smoothFollow: 10
-  xMouseSensitivity: 3
-  yMouseSensitivity: 3
-  yMinLimit: -40
-  yMaxLimit: 80
-  indexList: 0
-  indexLookPoint: 0
-  offSetPlayerPivot: 0
-  currentStateName: 
-  currentTarget: {fileID: 0}
-  movementSpeed: {x: 0, y: 0}
 --- !u!1 &969799467 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 9f122409af2c3464286d66eb2f28d8a3, type: 3}
@@ -33948,6 +33929,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651956753}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1654880718 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8947192727613694535, guid: 0f2aa5a25717a8e4ca45bd6ead2d6092, type: 3}
+  m_PrefabInstance: {fileID: 399124225}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1659810343
 GameObject:
   m_ObjectHideFlags: 0

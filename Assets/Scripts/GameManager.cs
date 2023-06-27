@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour
         //speed boost is 1
         //force boost is 2
         //score boost is 3
-        if (boostType != 0)
+        if (boostType == 0)
         {
             return;
         }
