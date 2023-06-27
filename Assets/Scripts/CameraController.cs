@@ -26,6 +26,10 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        if (UIManager.current.IsPaused)
+        {
+            return;
+        }
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = (-Input.GetAxis("Mouse Y")) * mouseSensitivity;
 
