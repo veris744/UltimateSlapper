@@ -19,7 +19,7 @@ public class FallEvent : Event
         if (!isResting)
         {
             float r = Random.Range(0f, 1f);
-            if (r < 0.5f)
+            if (r < probability)
             {
                 fallingObject.player = player;
                 fallingObject.gameObject.SetActive(true);
