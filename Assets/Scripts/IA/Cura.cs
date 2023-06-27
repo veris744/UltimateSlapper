@@ -11,7 +11,7 @@ public class Cura : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<MeshRenderer>().material.color = Color.white;                                                                        //cambia el color del agente al entrar en el estado
+        //animator.GetComponent<MeshRenderer>().material.color = Color.white;                                                                        //cambia el color del agente al entrar en el estado
 
         curas = GameObject.FindGameObjectsWithTag("Cura");                                                                                         //se buscan los gameobject con el tag Cura
         

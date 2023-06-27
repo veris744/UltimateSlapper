@@ -8,7 +8,7 @@ public class Guardia : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<MeshRenderer>().material.color = Color.yellow;                                                                      //cambia el color del agente al entrar en el estado
+        //animator.GetComponent<MeshRenderer>().material.color = Color.yellow;                                                                      //cambia el color del agente al entrar en el estado
 
         animator.GetComponent<NavMeshAgent>().destination = 
             GameObject.FindGameObjectWithTag("waypointGuardia").transform.Find("Waypoint " + animator.gameObject.name).transform.position;        //se coge el padre de los waypoints para buscarlos

@@ -10,7 +10,7 @@ public class GoToPlayer : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
-        animator.GetComponent<MeshRenderer>().material.color = Color.blue;                                                                        //cambia el color del agente al entrar en el estado
+        //animator.GetComponent<MeshRenderer>().material.color = Color.blue;                                                                        //cambia el color del agente al entrar en el estado
 
         animator.GetComponent<NavMeshAgent>().destination = playerPositionOnHit;                                                                  //se le asigna al agent la posición que se le ha pasado desde el script StatePatrol
     }

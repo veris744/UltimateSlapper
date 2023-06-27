@@ -12,7 +12,7 @@ public class Attack : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
-        animator.GetComponent<MeshRenderer>().material.color = Color.red;                                                                        //cambia el color del agente al entrar en el estado
+        //animator.GetComponent<MeshRenderer>().material.color = Color.red;                                                                        //cambia el color del agente al entrar en el estado
 
         contador = 0;                                                                                                                            //al empezar se pone el contador a cero
         espTime = 0;                                                                                                                             //al empezar se pone el tiempo a cero
