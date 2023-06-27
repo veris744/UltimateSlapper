@@ -34,6 +34,8 @@ public class SlapAction : MonoBehaviour
                     ((GameManager)GameManager.Instance).isCombo = true;
                     ((GameManager)GameManager.Instance).comboTimer = ConstParamenters.COMBO_TIMER_DEFAULT;
                     ((GameManager)GameManager.Instance).slapPointsCount = hit.collider.GetComponent<SlapCounter>().pointsToAdd;
+                    if (hit.transform.CompareTag("NPC"))
+                        hit.transform.GetComponentInParent<AudioSource>().Play();
                 }
             }
         }
@@ -43,6 +45,6 @@ public class SlapAction : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Vector3 direction = transform.forward * slapRange;
-        Gizmos.DrawRay(transform.position, direction);
+        //Gizmos.DrawRay(transform.position, direction);
     }
 }
