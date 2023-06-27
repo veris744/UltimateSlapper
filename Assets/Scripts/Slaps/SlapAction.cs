@@ -33,7 +33,16 @@ public class SlapAction : MonoBehaviour
                     hit.collider.GetComponent<SlapCounter>().goSlap = true;
                     ((GameManager)GameManager.Instance).isCombo = true;
                     ((GameManager)GameManager.Instance).comboTimer = ConstParamenters.COMBO_TIMER_DEFAULT;
-                    ((GameManager)GameManager.Instance).slapPointsCount = hit.collider.GetComponent<SlapCounter>().pointsToAdd;
+                    if (((GameManager)GameManager.Instance).slapCount != 0)
+                    {
+                        ((GameManager)GameManager.Instance).slapPointsCount = hit.collider.GetComponent<SlapCounter>().pointsToAdd;
+                    }
+                    else
+                    {
+                        ((GameManager)GameManager.Instance).AddPoints(hit.collider.GetComponent<SlapCounter>().pointsToAdd);
+                        ((GameManager)GameManager.Instance).slapPointsCount = 0;
+                        ((GameManager)GameManager.Instance).slapCount = 0;
+                    }
                     if (hit.transform.CompareTag("NPC"))
                         hit.transform.GetComponentInParent<AudioSource>().Play();
                 }

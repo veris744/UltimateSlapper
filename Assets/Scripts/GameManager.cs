@@ -162,17 +162,19 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("No hay combo!");
             isCombo = false;
-            if (slapCount == 0)
-            {
-                AddPoints(slapPointsCount);
-                slapPointsCount = 0;
-            }
-            else
-            {
-                AddPoints(slapPointsCount * slapCount);
-                slapPointsCount = 0;
-                slapCount = 0;
-            }
+
+            AddPoints(slapPointsCount * slapCount);
+            slapPointsCount = 0;
+            slapCount = 0;
+            //if (slapCount == 0)
+            //{
+            //    AddPoints(slapPointsCount);
+            //    slapPointsCount = 0;
+            //}
+            //else
+            //{
+                
+            //}
         }
     }
     public void PlayerBoosted(int _BoostType, float _Seconds)

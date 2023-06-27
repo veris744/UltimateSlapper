@@ -21,8 +21,18 @@ public class SlapCounter : MonoBehaviour
             slapCount.OnCollisionWithSlapped();
 
             //Ragdoll
-            if (collision.gameObject.GetComponentInParent<Ragdoll>())
-                collision.gameObject.GetComponentInParent<Ragdoll>().EnableRagdoll(true);
+            //if (collision.gameObject.GetComponentInParent<Ragdoll>())
+            //    collision.gameObject.GetComponentInParent<Ragdoll>().EnableRagdoll(true);
+            
+            if (collision.gameObject.GetComponent<Ragdoll>())
+            {
+                collision.gameObject.GetComponent<Ragdoll>().EnableRagdoll(true);
+                if (collision.gameObject.GetComponent<Animator>())
+                {
+                    collision.gameObject.GetComponent<Animator>().enabled = false;
+                }
+            }
+                
 
             if (gameObject.GetComponent<Ragdoll>())
                 gameObject.GetComponent<Ragdoll>().EnableRagdoll(true);
