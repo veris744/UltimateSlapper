@@ -34,8 +34,6 @@ public class ScorePickable : Pickable
     public override void ResetPlayer(PlayerController player)
     {
         gameManager.scoreMultiplier = earlierScore;
-        player.speedBoosted = false;
-        player.forceBoosted = false;
         player.scoreBoosted = false;
     }
 }

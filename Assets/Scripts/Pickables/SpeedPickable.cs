@@ -35,8 +35,6 @@ public class SpeedPickable : Pickable
     {
         player.playerSpeed = earlierSpeed;
         player.speedBoosted = false;
-        player.forceBoosted = false;
-        player.scoreBoosted = false;
     }
 
 }

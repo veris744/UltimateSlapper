@@ -39,9 +39,9 @@ public class GameManager : MonoBehaviour
     private bool itsPlayableLevel = false;
 
     private int numSpeedPickables = 8;
-    private int numForcePickables = 8;
-    private int numScorePickables = 8;
-    private int numLifePickables = 8;
+    private int numForcePickables = 7;
+    private int numScorePickables = 7;
+    private int numLifePickables = 6;
 
     public List<Vector2> ListOfAllSpawners;
     public List<Vector2> ListOfOccupiedSpawners;
@@ -190,10 +190,10 @@ public class GameManager : MonoBehaviour
         //speed boost is 1
         //force boost is 2
         //score boost is 3
-        if (boostType == 0)
-        {
-            return;
-        }
+        //if (boostType != 0)
+        //{
+        //    return;
+        //}
         boostType = _BoostType;
         secondsOfBoost = _Seconds;
         OnBoosted(boostType);

@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickableTime: 8
   timeToRegenerate: 3
-  speedMultiplier: 4
+  speedMultiplier: 2
 --- !u!82 &7925507162189317711
 AudioSource:
   m_ObjectHideFlags: 0
