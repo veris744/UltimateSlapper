@@ -339,7 +339,9 @@ MonoBehaviour:
   slapPointsCount: 0
   isCombo: 0
   scoreMultiplier: 0
-  internalWinningPoints: 1000
+  points: 0
+  life: 5
+  internalWinningPoints: 5000
   ListOfAllSpawners: []
   ListOfOccupiedSpawners: []
   speedPickable: {fileID: 8707317469485049265, guid: b10d4ed18512b1c40a7eb4a7a5c38041, type: 3}

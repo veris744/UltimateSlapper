@@ -9,6 +9,7 @@ public class PlayerUIManager : MonoBehaviour
     public GameObject [] boosts;
     public TMP_Text lifeText;
     public TMP_Text scoreText;
+    public TMP_Text countText;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,12 +18,14 @@ public class PlayerUIManager : MonoBehaviour
         GameManager.Instance.OnBoosted += ChangeBoost;
         GameManager.Instance.FinishBoosted += FinishBoost;
         GameManager.Instance.RestartGame += RestartGame;
+        GameManager.Instance.OnChangeMultiplier += ChangeCount;
         foreach (var item in boosts)
         {
             item.SetActive(false);
         }
         lifeText.text = GameManager.Instance.GetLifes().ToString();
         scoreText.text = "Score: " + GameManager.Instance.GetPoints().ToString();
+        countText.text = "0" ;
 
     }
     void RestartGame()
@@ -51,6 +54,10 @@ public class PlayerUIManager : MonoBehaviour
         {
             item.SetActive(false);
         }
+    }
+    void ChangeCount(int _count)
+    {
+        countText.text = _count.ToString();
     }
     // Update is called once per frame
     void Update()

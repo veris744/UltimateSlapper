@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public event OnTimerFinish TimerFinish;
     public delegate void OnRestartGame();
     public event OnRestartGame RestartGame;
+    public delegate void OnMultiplierChanges(int life);
+    public event OnMultiplierChanges OnChangeMultiplier;
 
 
     public float timer;
@@ -143,8 +145,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (UIManager.current.IsPaused)
+        {
+            return;
+        }
         if (itsPlayableLevel)
         {
+            OnChangeMultiplier(slapCount);
+
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
@@ -162,7 +170,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("No hay combo!");
             isCombo = false;
-
+            
             AddPoints(slapPointsCount * slapCount);
             slapPointsCount = 0;
             slapCount = 0;
@@ -173,7 +181,7 @@ public class GameManager : MonoBehaviour
             //}
             //else
             //{
-                
+
             //}
         }
     }
