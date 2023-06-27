@@ -16,12 +16,19 @@ public class PlayerUIManager : MonoBehaviour
         GameManager.Instance.OnChangeLife += ChangeLife;
         GameManager.Instance.OnBoosted += ChangeBoost;
         GameManager.Instance.FinishBoosted += FinishBoost;
+        GameManager.Instance.RestartGame += RestartGame;
         foreach (var item in boosts)
         {
             item.SetActive(false);
         }
         lifeText.text = GameManager.Instance.GetLifes().ToString();
+        scoreText.text = "Score: " + GameManager.Instance.GetPoints().ToString();
 
+    }
+    void RestartGame()
+    {
+        lifeText.text = GameManager.Instance.GetLifes().ToString();
+        scoreText.text = "Score: " + GameManager.Instance.GetPoints().ToString();
     }
 
     void ChangePoints(int _points)

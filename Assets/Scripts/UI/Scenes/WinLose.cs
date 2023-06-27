@@ -18,10 +18,12 @@ public class WinLose : MonoBehaviour
     }
     public void ButtonRetry()
     {
+        GameManager.Instance.RestartLevel();
         SceneManager.LoadScene("City");
     }
     public void ButtonQuit()
     {
+        GameManager.Instance.RestartLevel();
         SceneManager.LoadScene("MainMenu");
     }
 }

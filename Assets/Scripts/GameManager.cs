@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public static class ConstParamenters
 {
@@ -18,6 +17,11 @@ public class GameManager : MonoBehaviour
     public delegate void OnBoost(int BoostType);
     public event OnBoost OnBoosted;
     public event OnBoost FinishBoosted;
+    public delegate void OnTimerFinish();
+    public event OnTimerFinish TimerFinish;
+    public delegate void OnRestartGame();
+    public event OnRestartGame RestartGame;
+
 
     public float timer;
     [HideInInspector] public float comboTimer = 0;
@@ -25,7 +29,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int slapPointsCount = 0;
     [HideInInspector] public bool isCombo = false;
     [HideInInspector] public int scoreMultiplier;
-    private int points;
+    [SerializeField] private int points;
     [SerializeField] private int life;
     private int boostType;
     private float secondsOfBoost;
@@ -57,6 +61,15 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+    public void RestartLevel()
+    {
+        life = 5;
+        points = 0;
+        scoreMultiplier = 1;
+        timer = 300f;
+        RestartGame();
+
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -121,6 +134,10 @@ public class GameManager : MonoBehaviour
             }
             itsPlayableLevel = true;
         }
+        else
+        {
+            itsPlayableLevel = false;
+        }
     }
 
     // Update is called once per frame
@@ -131,18 +148,10 @@ public class GameManager : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
-                DieByTime();
+                TimerFinish();
             }
         }
-        if (life <= 0)
-        {
-            DieByLife();
-        }
 
-        if (points >= internalWinningPoints)
-        {
-            WinByPoints();
-        }
 
         if (comboTimer > 0)
         {
@@ -187,6 +196,15 @@ public class GameManager : MonoBehaviour
         secondsOfBoost = 0;
         FinishBoosted(boostType);
     }
+
+    public int GetInternalWinningPoints()
+    {
+        return internalWinningPoints;
+    }
+    public int GetPoints()
+    {
+        return points;
+    }
     public void AddPoints(int _Points)
     {
         if (_Points < 0)
@@ -205,20 +223,6 @@ public class GameManager : MonoBehaviour
         life += _Life;
         OnChangeLife(life);
     }
-    void DieByLife()
-    {
-        SceneManager.LoadScene("LoseScene");
-
-    }
-    void DieByTime()
-    {
-        SceneManager.LoadScene("LoseScene");
-    }
-    void WinByPoints()
-    {
-        SceneManager.LoadScene("WinScene");
-    }
-
 
 
     //PICKABLE SPAWNERS//////////////////////////////////////////////////////////////
