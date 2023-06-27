@@ -43,19 +43,6 @@ public class SlapCounter : MonoBehaviour
             canCount = false;
             goSlap = false;
             slapCount.goSlap = true;
-
-            //Debug
-
-            if (gameObject.GetComponent<MeshRenderer>())
-            {
-                gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
-            }
-            else
-            {
-                Debug.Log("Dolor");
-            }
-
-            //--------
             
         }
     }
