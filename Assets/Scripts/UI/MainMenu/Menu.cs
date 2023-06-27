@@ -24,7 +24,7 @@ public class Menu : MonoBehaviour
    
     public void ButtonStartGame()
     {
-        SceneManager.LoadScene("City");
+        SceneManager.LoadScene("Comic");
     }
 
     public void ButtonOptions() 
@@ -43,7 +43,7 @@ public class Menu : MonoBehaviour
     public void ButtonQuitGame()
     {
         Application.Quit();
-        Debug.Log("Salí");
+        Debug.Log("Salï¿½");
     }
 
 
