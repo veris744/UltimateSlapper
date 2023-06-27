@@ -20,6 +20,8 @@ public class PlayerUIManager : MonoBehaviour
         {
             item.SetActive(false);
         }
+        lifeText.text = GameManager.Instance.GetLifes().ToString();
+
     }
 
     void ChangePoints(int _points)
@@ -28,7 +30,7 @@ public class PlayerUIManager : MonoBehaviour
     }
     void ChangeLife(int _Life)
     {
-        scoreText.text = _Life.ToString();
+        lifeText.text = _Life.ToString();
     }
     void ChangeBoost(int _boostType)
     {

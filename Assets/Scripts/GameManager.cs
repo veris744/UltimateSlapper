@@ -26,12 +26,10 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool isCombo = false;
     [HideInInspector] public int scoreMultiplier;
     private int points;
-    private int life;
+    [SerializeField] private int life;
     private int boostType;
     private float secondsOfBoost;
-   [SerializeField] private int internalWinningPoints;
-    private bool looseByLife;//hay que poner un delegado de player a esto, que setee la perdida por vida
-    private bool looseByTime;
+    [SerializeField] private int internalWinningPoints;
     private bool itsPlayableLevel = false;
 
     private int numSpeedPickables = 6;
@@ -61,9 +59,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         points = 0;
-        looseByLife = false;
-        looseByTime = false;
         scoreMultiplier = 1;
+        life = 5;
     }
 
     private void OnLevelWasLoaded(int level)
@@ -120,13 +117,11 @@ public class GameManager : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
-                looseByTime = true;
                 DieByTime();
             }
         }
         if (life <= 0)
         {
-            looseByLife = true;
             DieByLife();
         }
 
@@ -162,7 +157,10 @@ public class GameManager : MonoBehaviour
         //speed boost is 1
         //force boost is 2
         //score boost is 3
-
+        if (boostType != 0)
+        {
+            return;
+        }
         boostType = _BoostType;
         secondsOfBoost = _Seconds;
         OnBoosted(boostType);
@@ -183,6 +181,10 @@ public class GameManager : MonoBehaviour
             points += (scoreMultiplier * _Points);
 
         OnChangePoints(points);
+    }
+    public int GetLifes()
+    {
+        return life;
     }
     public void AddLifes(int _Life)
     {

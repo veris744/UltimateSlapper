@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FallingObject : MonoBehaviour
 {
-    public int damageToPlayer = 5;
+    public int damageToPlayer = 1;
     public float restingTime = 5;
 
     [HideInInspector]
@@ -27,7 +27,7 @@ public class FallingObject : MonoBehaviour
         {
             player = null;
             audioSource.Play();
-            GameManager.Instance.AddPoints(-damageToPlayer);
+            GameManager.Instance.AddLifes(-damageToPlayer);
         }
         player = null;
     }
